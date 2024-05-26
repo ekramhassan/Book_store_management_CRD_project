@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content%} 
+
+
+<div style="width:80%;margin:auto;">
+    <h1> List Of Book</h1>
+    {% if data %}
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Book-name</th>
+            <th scope="col">Author-name</th>
+            <th scope="col">Category</th>
+            <th scope="col">frist_publication</th>
+            <th scope="col">Last_publication</th>
+            <th scope="col">   Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.book_name}}</td>
+            <td>{{item.author}}</td>
+            <td>{{item.category}}</td>
+            <td>{{item.frist_pub}}</td>
+            <td>{{item.last_pub}}</td>
+            <td>
+              <td>
+                <a href="{% url 'edit_book' item.id %}" class="btn btn-warning">Edit</a>
+                <a href="{% url 'delete_book' item.id %}" class="btn btn-danger">Delete</a>
+            </td>
+            
+            </td>
+            </tr>
+            {% endfor %}
+          
+        </tbody>
+      </table>
+      {% else %}
+      <h2> No Data avialavle</h2>
+      {% endif %}
+
+</div>
+{% endblock %}
